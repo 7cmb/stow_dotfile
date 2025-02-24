@@ -1,0 +1,10 @@
+set number
+set relativenumber
+set cursorline
+syntax enable
+set nocompatible
+set clipboard+=unnamedplus
+set hidden
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2

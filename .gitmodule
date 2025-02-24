@@ -1,0 +1,15 @@
+[submodule "nvim_coc.nvim"]
+	path = nvim/nvim/plugins/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+[submodule "nvim_indent-blankline"]
+	path = nvim/nvim/plugins/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
+[submodule "nvim_nvim-tree.lua"]
+	path = nvim/nvim/plugins/nvim-tree.lua
+	url = https://github.com/nvim-tree/nvim-tree.lua.git
+[submodule "nvim_nvim.osc52"]
+  path = nvim/nvim/plugins/nvim.osc52
+  url = https://github.com/ojroques/nvim-osc52
+[submodule "nvim_sidebar.nvim"]
+  path = nvim/nvim/plugins/sidebar.nvim
+  url = https://github.com/nvim-lualine/lualine.nvim.git
