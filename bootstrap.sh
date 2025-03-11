@@ -1,3 +1,43 @@
 #/bin/bash
+#
+# Make softlink to deploy my dotfile using stow
+
+# make sure this script run in a correct environment
+set -o pipefail
+whereis stow 2>&1 > /dev/null || ( echo 'WARNING: binary file 'stow' not found in $PATH ' && exit )
 work_dir="$(realpath "${BASH_SOURCE[0]}")"
-echo "${work_dir}"
+echo 'info: path to working directory is '"${work_dir}"
+
+######
+# Pass a string as a command to run in the iterator that iterates through packages
+#####
+function find_package(){
+  [[ -n "$@" ]] || exit
+  for i in $(find -maxdepth 1 -type d -name '*' -not -path . -not -path ..);do
+    local prefix='./' 
+    "$@" "${i##"$prefix"}"
+  done
+}
+
+# list all packages on STDOUT
+echo 'info: list all packages here below'
+find_package "echo" "info:"
+
+# confirm message
+echo 'notification:' 'press "y" and enter to confirm that your packages is correct, then the stow will be run.'
+
+#####
+# Stow all the packages
+#####
+function stow_run(){
+  ([[ $# -eq 1 ]] && [[ $@ -eq y ]]) || (echo "WARNING: unavailable input, please input a \"y\" and match case" && exit)
+  find_package "stow"
+}
+
+# read input from STDIN
+read -p 'input: ' input
+
+# run stow
+stow_run "$input"
+
+echo "info: dotfile deploy successfully"
