@@ -12,4 +12,4 @@
   url = https://github.com/ojroques/nvim-osc52
 [submodule "nvim_sidebar.nvim"]
   path = nvim/nvim/plugins/sidebar.nvim
-  url = https://github.com/nvim-lualine/lualine.nvim.git
+  url = https://github.com/sidebar-nvim/sidebar.nvim.git
