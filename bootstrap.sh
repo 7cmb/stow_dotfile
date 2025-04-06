@@ -4,7 +4,7 @@
 
 # make sure this script run in a correct environment
 set -o pipefail
-whereis stow 2>&1 > /dev/null || ( echo 'WARNING: binary file 'stow' not found in $PATH ' && exit )
+whereis stow 2>&1 > /dev/null || ( echo 'ERROR: binary file 'stow' not found in $PATH ' && exit )
 work_dir="$(realpath "${BASH_SOURCE[0]}")"
 echo 'info: path to working directory is '"${work_dir}"
 
@@ -30,7 +30,7 @@ echo 'notification:' 'press "y" and enter to confirm that your packages is corre
 # Stow all the packages
 #####
 function stow_run(){
-  ([[ $# -eq 1 ]] && [[ $@ -eq y ]]) || (echo "WARNING: unavailable input, please input a \"y\" and match case" && exit)
+  ([[ $# -eq 1 ]] && [[ $@ -eq y ]]) || (echo "ERROR: unavailable input, please input a \"y\" and match case" && exit)
   find_package "stow"
 }
 
@@ -40,4 +40,16 @@ read -p 'input: ' input
 # run stow
 stow_run "$input"
 
-echo "info: dotfile deploy successfully"
+echo "info: dotfile deployment successfully"
+
+# init input argument to reuse it
+input="n"
+echo 'notification:' 'press "y" to prepare compressive package <Cascadia Code Nerd Font> and <Source Code Pro Nerd Font>'
+read -p 'input: ' input
+if [[ "$input"=="y" ]];then
+  curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip
+  curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
+  echo 'please copy the file you need to `/usr/loacal/share/fonts` '
+else
+  echo 'notification:' 'don'"'"'t download anything'
+fi
