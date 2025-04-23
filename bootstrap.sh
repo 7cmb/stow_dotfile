@@ -1,8 +1,10 @@
-#/bin/bash
+#!/bin/bash
 #
 # Make softlink to deploy my dotfile using stow
 
 # make sure this script run in a correct environment
+
+echo 'using bash when execute it on Debian'
 set -o pipefail
 whereis stow 2>&1 > /dev/null || ( echo 'ERROR: binary file 'stow' not found in $PATH ' && exit )
 work_dir="$(realpath "${BASH_SOURCE[0]}")"
@@ -46,7 +48,8 @@ echo "info: dotfile deployment successfully"
 input="n"
 echo 'notification:' 'press "y" to prepare compressive package <Cascadia Code Nerd Font> and <Source Code Pro Nerd Font>'
 read -p 'input: ' input
-if [[ "$input"=="y" ]];then
+bash -c 'echo $input;exit'
+if [[ "$input"="y" ]] && [[ -n "$input" ]];then
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
   echo 'please copy the file you need to `/usr/loacal/share/fonts` '
