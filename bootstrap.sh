@@ -52,7 +52,7 @@ bash -c 'echo $input;exit'
 if [[ "$input" == "y" ]] && [[ -n "$input" ]];then
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
-  echo 'please copy the file you need to `/usr/loacal/share/fonts` '
+  echo 'please copy the file you need to `/usr/local/share/fonts` '
 else
   echo 'notification:' 'don'"'"'t download anything'
 fi
