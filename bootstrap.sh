@@ -32,7 +32,7 @@ echo 'notification:' 'press "y" and enter to confirm that your packages is corre
 # Stow all the packages
 #####
 function stow_run(){
-  ([[ $# -eq 1 ]] && [[ $@ == y ]]) || exec bash -c 'echo "ERROR: unavailable input, please input a \"y\" and match case" && exit'
+  ([[ $# -eq 1 ]] && [[ $@ == "y" ]]) || exec bash -c 'echo "ERROR: unavailable input, please input a \"y\" and match case" && exit'
   find_package "stow"
 }
 
