@@ -11,7 +11,8 @@ work_dir="$(realpath "${BASH_SOURCE[0]}")"
 echo 'info: path to working directory is '"${work_dir}"
 
 ######
-# Pass a string as a command to run in the iterator that iterates through packages
+# Pass a string as a command to run in a iterator that treat each 
+# package as the first non-option argument for all packages
 #####
 function find_package(){
   [[ -n "$@" ]] || exit
@@ -47,12 +48,14 @@ echo "info: dotfile deployment successfully"
 # init input argument to reuse it
 input="n"
 echo 'notification:' 'press "y" to prepare compressive package <Cascadia Code Nerd Font> and <Source Code Pro Nerd Font>'
-read -p 'input: ' input
-bash -c 'echo $input;exit'
+read -p 'input:' input
 if [[ "$input" == "y" ]] && [[ -n "$input" ]];then
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip
   curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/SourceCodePro.zip
-  echo 'please copy the file you need to `/usr/local/share/fonts` '
+  echo 'please extract the zip to a directory and move it to `/usr/local/share/fonts` '
 else
   echo 'notification:' 'don'"'"'t download anything'
 fi
+
+# finshed prompot
+echo 'notification:' 'run "npm ci" to init coc.nvim'
